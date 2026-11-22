@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Algo deu errado · Gula{% endblock %}
+
+{% block content %}
+  <div class="container-fluid px-4 px-lg-5 py-5 content-placeholder">
+    <p class="capa-kicker">erro 500</p>
+    <h1 class="title-page"><i>Algo deu errado</i></h1>
+    <p class="mt-3 mb-4">Tivemos um problema na cozinha. Já registramos o erro; tente de novo em instantes.</p>
+    <a href="{{ url_for('main.index') }}" class="btn btn-capa">Voltar para a capa</a>
+  </div>
+{% endblock %}

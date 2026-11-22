@@ -1,0 +1,24 @@
+# ambiente
+venv/
+.venv/
+.env
+
+# banco e arquivos gerados
+instance/
+*.db
+*.sqlite3
+logs/
+
+# fotos enviadas pelos usuários (mantém só a pasta)
+app/static/uploads/*
+!app/static/uploads/.gitkeep
+
+# python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# editores / sistema
+.vscode/
+.idea/
+.DS_Store

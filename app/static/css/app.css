@@ -1,0 +1,56 @@
+/* ==========================================================================
+   GULA em Flask — estilos novos da versão Flask (P1).
+   O base.css e o style.css vêm do Trabalho 1 e ficam como estão; o que é
+   novo (menu da conta, mensagens flash) fica aqui, usando a mesma paleta.
+   ========================================================================== */
+
+/* ---------- menu da conta (Entrar / Cadastrar / Perfil / Sair) ---------- */
+.navbar-gula .nav-account {
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* "Cadastrar": botão dourado, igual ao .btn-cta do Trabalho 1 */
+.navbar-gula .btn-account {
+  background-color: var(--gula-gold);
+  color: var(--cafe);
+  font-weight: 600;
+  border: none;
+  border-radius: 0;
+  padding: 0.4rem 1rem;
+  margin-left: 0.5rem;
+}
+
+.navbar-gula .btn-account:hover,
+.navbar-gula .btn-account:focus,
+.navbar-gula .btn-account.active {
+  background-color: var(--gula-gold);
+  color: var(--cafe);
+  filter: brightness(1.1);
+}
+
+/* no menu recolhido (celular) o botão não fica colado na esquerda */
+@media (max-width: 991.98px) {
+  .navbar-gula .nav-account {
+    align-items: flex-start;
+  }
+
+  .navbar-gula .btn-account {
+    margin: 0.5rem 0 0;
+  }
+}
+
+/* ---------- mensagens flash ---------- */
+.flash-area .alert {
+  border-radius: 0;
+  border: none;
+  border-left: 4px solid;
+  background-color: var(--gula-cream-2);
+  color: var(--gula-ink);
+  margin-bottom: 0.75rem;
+}
+
+.flash-area .alert-success { border-left-color: #4f7a3a; }
+.flash-area .alert-info    { border-left-color: var(--gula-gold); }
+.flash-area .alert-warning { border-left-color: #c77d1a; }
+.flash-area .alert-danger  { border-left-color: var(--gula-maroon); }

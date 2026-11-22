@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Página não encontrada · Gula{% endblock %}
+
+{% block content %}
+  <div class="container-fluid px-4 px-lg-5 py-5 content-placeholder">
+    <p class="capa-kicker">erro 404</p>
+    <h1 class="title-page"><i>Página não encontrada</i></h1>
+    <p class="mt-3 mb-4">A receita ou página que você procurou não existe ou mudou de lugar.</p>
+    <a href="{{ url_for('main.index') }}" class="btn btn-capa">Voltar para a capa</a>
+  </div>
+{% endblock %}
