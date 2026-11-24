@@ -49,6 +49,7 @@ python -c "import secrets; print(secrets.token_hex(32))"   # cole o resultado em
 
 # 5. criar o banco e rodar
 flask init-db
+python seed.py
 flask run
 ```
 
@@ -61,7 +62,7 @@ O site abre em <http://127.0.0.1:5000>.
 | `flask run` | Sobe o servidor de desenvolvimento (recarrega ao salvar). |
 | `flask init-db` | Cria as tabelas do banco (`instance/gula.db`). |
 | `flask init-db --drop` | Apaga todas as tabelas e cria de novo (**perde os dados**). |
-| `python seed.py` | Cadastra as receitas do Trabalho 1 *(P3, a completar)*. |
+| `python seed.py` | Cadastra as categorias e as receitas do Trabalho 1; pode ser repetido sem duplicar dados. |
 
 ### Variáveis do `.env`
 
@@ -105,6 +106,10 @@ instance/gula.db     banco SQLite, gerado pelo init-db (fora do git)
 ```
 
 *(a completar: descrição de cada parte, com o texto enviado por cada pessoa)*
+
+O catálogo usa as rotas `/` e `/categoria/<slug>`. Nas páginas de categoria,
+`?q=` pesquisa no título e `?tag=` filtra pelas tags da receita (por exemplo,
+`/categoria/salgados?tag=vegan`). A pesquisa e os filtros são processados no servidor.
 
 ## Guia do usuário
 

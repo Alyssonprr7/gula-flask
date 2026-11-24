@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Gula · Revista digital de receitas{% endblock %}
+
+{% block content %}
+  <section class="capa-masthead text-center">
+    <p class="capa-kicker">cozinha de revista</p>
+    <p class="capa-titulo">Gula</p>
+    <p class="capa-tagline fst-italic">o prazer de cozinhar, página a página</p>
+  </section>
+
+  {% if featured %}
+    <section class="capa-hero container-fluid px-4 px-lg-5 pb-5">
+      <div class="row align-items-center g-4">
+        <div class="col-12 col-lg-6">
+          <div class="capa-foto" role="img" aria-label="{{ featured.titulo }}">
+            {% if featured.imagem %}
+              <img src="{{ url_for('static', filename=featured.imagem) }}" alt="{{ featured.titulo }}">
+            {% endif %}
+            <span class="capa-selo">Prato de capa</span>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6">
+          <p class="capa-kicker">receitas {{ featured.categoria.nome | lower }}</p>
+          <h1>{{ featured.titulo }}</h1>
+          <p class="capa-lead fst-italic">{{ featured.descricao }}</p>
+          <div class="capa-meta d-flex flex-wrap gap-4 py-3 my-3">
+            <div><span class="capa-meta-label">Preparo</span><span class="capa-meta-valor">{{ featured.tempo_min }} min</span></div>
+            <div><span class="capa-meta-label">Dificuldade</span><span class="capa-meta-valor">{{ featured.dificuldade }}</span></div>
+          </div>
+          <a href="{{ url_for('comentarios.detalhe', id=featured.id) }}" class="btn btn-capa">Ver a receita completa</a>
+        </div>
+      </div>
+    </section>
+  {% else %}
+    <section class="container-fluid px-4 px-lg-5 pb-5">
+      <h1 class="title-page">Bem-vindo à Gula</h1>
+      <p>As receitas da edição aparecerão aqui assim que o catálogo for carregado.</p>
+    </section>
+  {% endif %}
+
+  <section class="container-fluid px-4 px-lg-5 pb-5">
+    <hr class="capa-regua">
+    <div class="d-flex flex-wrap justify-content-between align-items-baseline mb-4">
+      <h2 class="capa-secao-titulo mb-0">Nesta edição</h2>
+      <span class="capa-nota">as receitas mais recentes</span>
+    </div>
+
+    {% if recent_recipes %}
+      <div class="capa-cards row row-cols-1 row-cols-md-3 g-4">
+        {% for receita in recent_recipes %}
+          <div class="col">
+            {% include "main/_card_receita.html" %}
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="recipe-empty">Ainda não há receitas cadastradas.</p>
+    {% endif %}
+  </section>
+
+  <div class="container-fluid px-4 px-lg-5 pb-5">
+    <div class="cta cta-citacao p-4">
+      <p class="cta-text fst-italic mb-0">Cozinhar é o único jeito honesto de encurtar a distância entre a fome e a memória.</p>
+      <span class="cta-nota">Carta da cozinha, escrita toda quinta por quem está de avental nesta edição.</span>
+    </div>
+  </div>
+{% endblock %}

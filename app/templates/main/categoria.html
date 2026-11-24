@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}{{ presentation.title }} · Gula{% endblock %}
+{% block section %}{{ presentation.title }}{% endblock %}
+
+{% block content %}
+  <section class="container-fluid px-4 px-lg-5 py-5">
+    <div class="mb-4">
+      <p class="filter-label text-uppercase mb-2">{{ presentation.eyebrow }}</p>
+      <h1 class="title-page mb-2"><i>{{ presentation.title }}</i></h1>
+      <p class="mb-0">{{ presentation.description }}</p>
+    </div>
+
+    <div class="filter-bar d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+      <form class="filter-search d-flex gap-2" role="search" method="get"
+            action="{{ url_for('main.categoria', slug=categoria.slug) }}">
+        <input type="search" class="form-control" name="q" value="{{ search_term }}"
+               placeholder="Buscar receita..." aria-label="Buscar receita pelo título">
+        {% if tag %}<input type="hidden" name="tag" value="{{ tag }}">{% endif %}
+        <button class="btn btn-filter" type="submit">Buscar</button>
+      </form>
+
+      <nav class="filter-chips d-flex flex-wrap align-items-center gap-2" aria-label="Filtrar receitas por tag">
+        <span class="filter-label">Filtro por:</span>
+        <a class="filter-chip text-decoration-none {% if not tag %}is-active{% endif %}"
+           href="{{ url_for('main.categoria', slug=categoria.slug, q=search_term or None) }}"
+           {% if not tag %}aria-current="true"{% endif %}>Tudo</a>
+        {% for filter_value, filter_label in presentation.filters %}
+          <a class="filter-chip text-decoration-none {% if tag == filter_value %}is-active{% endif %}"
+             href="{{ url_for('main.categoria', slug=categoria.slug, q=search_term or None, tag=None if tag == filter_value else filter_value) }}"
+             {% if tag == filter_value %}aria-current="true"{% endif %}>{{ filter_label }}</a>
+        {% endfor %}
+      </nav>
+    </div>
+
+    {% if recipes %}
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+        {% for receita in recipes %}
+          <div class="col">
+            {% include "main/_card_receita.html" %}
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="recipe-empty" role="status">Nenhuma receita encontrada.</p>
+    {% endif %}
+  </section>
+
+  <div class="container-fluid px-4 px-lg-5 pb-5">
+    <div class="cta cta-citacao p-4">
+      <p class="cta-text fst-italic mb-0">Encontre mais inspiração na próxima seção da revista.</p>
+      <a href="{{ url_for('main.categoria', slug=related_slug) }}" class="btn btn-cta">{{ related_label }}</a>
+    </div>
+  </div>
+{% endblock %}
