@@ -54,3 +54,198 @@
 .flash-area .alert-info    { border-left-color: var(--gula-gold); }
 .flash-area .alert-warning { border-left-color: #c77d1a; }
 .flash-area .alert-danger  { border-left-color: var(--gula-maroon); }
+
+/* ---------- página da receita e comentários (P5) ---------- */
+.recipe-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  color: var(--gula-maroon-hi);
+}
+
+.recipe-breadcrumb a,
+.recipe-kicker-link {
+  color: var(--gula-maroon);
+  text-decoration: none;
+}
+
+.recipe-breadcrumb a:hover,
+.recipe-kicker-link:hover {
+  color: var(--gula-maroon-hi);
+  text-decoration: underline;
+}
+
+.recipe-byline {
+  font-size: 0.9rem;
+  color: #5c4333;
+}
+
+.recipe-rating-count {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: #5c4333;
+}
+
+.rating-star-inline,
+.star-filled {
+  color: var(--gula-gold);
+}
+
+.star-empty {
+  color: #b8a387;
+}
+
+.btn-gula-outline {
+  background-color: transparent;
+  color: var(--gula-maroon);
+  border: 1px solid var(--gula-maroon);
+  border-radius: 0;
+  padding: 0.6rem 1.25rem;
+  font-weight: 600;
+}
+
+.btn-gula-outline:hover,
+.btn-gula-outline:focus {
+  background-color: var(--gula-maroon);
+  color: var(--gula-cream);
+}
+
+.btn-sm.btn-gula-outline {
+  padding: 0.25rem 0.65rem;
+  font-size: 0.8rem;
+}
+
+.recipe-panel {
+  background-color: var(--gula-cream-2);
+  border: 1px solid var(--gula-maroon-hi);
+}
+
+.recipe-ingredients {
+  list-style: none;
+  padding-left: 0;
+}
+
+.recipe-ingredients li {
+  padding: 0.55rem 0;
+  border-bottom: 1px dotted rgba(42, 23, 15, 0.3);
+}
+
+.recipe-ingredients li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.recipe-steps {
+  counter-reset: passo;
+  list-style: none;
+  padding-left: 0;
+}
+
+.recipe-steps li {
+  counter-increment: passo;
+  position: relative;
+  padding-left: 2.75rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.65;
+}
+
+.recipe-steps li::before {
+  content: counter(passo);
+  position: absolute;
+  left: 0;
+  top: 0.05rem;
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--gula-maroon);
+  color: var(--gula-cream);
+  font-family: var(--font-display);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comment-box,
+.comment-card {
+  background-color: var(--gula-cream-2);
+  border: 1px solid var(--gula-maroon-hi);
+}
+
+.recipe-textarea {
+  border-radius: 0;
+  border-color: var(--gula-maroon-hi);
+  background-color: var(--gula-cream);
+  color: var(--gula-ink);
+}
+
+.recipe-textarea:focus {
+  border-color: var(--gula-maroon);
+  background-color: #fbf5e8;
+  box-shadow: 0 0 0 0.2rem rgba(138, 35, 50, 0.2);
+}
+
+/* seletor de estrelas sem JS (ordem reversa no DOM: 5 -> 1) */
+.star-rating {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 0.15rem;
+}
+
+.star-rating-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.star-rating-label {
+  font-size: 1.75rem;
+  line-height: 1;
+  color: #b8a387;
+  cursor: pointer;
+  padding: 0.1rem;
+  transition: color 0.15s ease;
+}
+
+.star-rating-label:hover,
+.star-rating-label:hover ~ .star-rating-label,
+.star-rating-input:checked ~ .star-rating-label {
+  color: var(--gula-gold);
+}
+
+.star-rating-input:focus-visible + .star-rating-label {
+  outline: 2px solid var(--gula-maroon);
+  outline-offset: 2px;
+}
+
+.comment-author {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--gula-maroon);
+}
+
+.comment-date {
+  font-size: 0.8rem;
+  color: #5c4333;
+}
+
+.comment-stars {
+  font-size: 1.05rem;
+  letter-spacing: 0.05em;
+}
+
+.comment-score {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gula-ink);
+  margin-left: 0.25rem;
+}
+
+.comment-text {
+  white-space: pre-line;
+  line-height: 1.6;
+}
+
